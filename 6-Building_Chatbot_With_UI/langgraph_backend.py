@@ -27,6 +27,3 @@ checkpointer = InMemorySaver()
 
 chatbot = graph.compile(checkpointer=checkpointer)
 
-response = chatbot.invoke({"messages":"TSET INVOKE"},config={"configurable":{"thread_id":"1"}})
-
-print(chatbot.get_state(config={"configurable":{"thread_id":"1"}}).values['messages'])
