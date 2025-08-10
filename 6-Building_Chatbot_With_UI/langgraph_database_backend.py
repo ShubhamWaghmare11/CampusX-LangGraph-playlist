@@ -33,6 +33,10 @@ checkpointer = SqliteSaver(conn=conn)
 chatbot = graph.compile(checkpointer=checkpointer)
 
 
-response = chatbot.invoke({'messages':[HumanMessage(content="What you know about me")]},config={"configurable":{"thread_id":2}})
+def retrieve_all_threads():
+    all_threads = set()
 
-print(response)
+    for checkpoint in checkpointer.list(None):
+        all_threads.add(checkpoint.config['configurable']['thread_id'])
+        
+    return list(all_threads)
