@@ -88,12 +88,19 @@ load_convos()
 inp =st.chat_input(placeholder="Your Message")
 
 
-config1 = {"configurable":{"thread_id":st.session_state['thread_id']}}
+config1 = {
+    "configurable":{"thread_id":st.session_state['thread_id']},
+    "metadata":{
+        "thread_id":st.session_state['thread_id']
+    },
+    "run_name":"chat_turn"
+    }
 
 if inp:
     st.session_state['message_history'].append({"role":"user","content":inp})
     with st.chat_message("user"):
         st.text(inp)
+
 
 
     with st.chat_message("assistant"):
